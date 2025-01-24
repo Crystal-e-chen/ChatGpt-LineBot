@@ -72,9 +72,7 @@ def callback():
 
     # if event is MessageEvent and message is TextMessage, then echo text
     app.logger.info("before event: %s" , len(events))
-    app.logger.info("process api")
     
-
     for event in events:
         app.logger.info("event type: %s" , type(event))
         # if not isinstance(event, MessageEvent):
@@ -108,9 +106,14 @@ def callback():
             chatgpt.add_msg(f"Human:{event.message.text}?\n")
             reply_msg = chatgpt.get_response().replace("AI:", "", 1)
             chatgpt.add_msg(f"AI:{reply_msg}\n")
+            app.logger.info("process api response: %s", reply_msg)
+    
             line_bot_api.reply_message_with_http_info(
-                ReplyMessageRequest(event.reply_token,
-                TextMessage(text=reply_msg)))
+                ReplyMessageRequest(
+                    reply_token=event.reply_token,
+                    messages=[TextMessage(text=reply_msg)]
+                )
+            )
 
     return 'OK'
 
