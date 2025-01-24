@@ -102,12 +102,12 @@ def callback():
             #     return
             
             # if working_status:
-            line_bot_api = MessagingApi(api_client)
             chatgpt.add_msg(f"Human:{event.message.text}?\n")
             reply_msg = chatgpt.get_response().replace("AI:", "", 1)
             chatgpt.add_msg(f"AI:{reply_msg}\n")
             app.logger.info("process api response: %s", reply_msg)
-    
+
+            line_bot_api = MessagingApi(api_client)
             line_bot_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
