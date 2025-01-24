@@ -18,11 +18,11 @@ class ChatGPT:
     def get_response(self):
         response = openai.ChatCompletion.create(
             model=self.model,
-            # messages=[
-            #     {"role": "system", "content": "You are a helpful assistant."},
-            #     {"role": "user", "content": self.prompt.generate_prompt()}
-            # ],
-            messages=self.prompt.get_messages,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": self.prompt.generate_prompt()}
+            ],
+            # messages=self.prompt.get_messages,
             temperature=self.temperature,
             frequency_penalty=self.frequency_penalty,
             presence_penalty=self.presence_penalty,
