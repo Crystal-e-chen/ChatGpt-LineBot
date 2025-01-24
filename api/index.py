@@ -108,7 +108,7 @@ def callback():
             app.logger.info("process api response: %s", reply_msg)
 
             line_bot_api = MessagingApi(api_client)
-            line_bot_api.reply_message_with_http_info(
+            line_bot_api.reply_message(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
                     messages=[TextMessage(text=reply_msg)]
