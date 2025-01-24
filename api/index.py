@@ -49,7 +49,7 @@ def hello():
 
     # handle webhook body
     try:
-        return "Hello world !!"
+        return "Hello OPENAI !!"
     except InvalidSignatureError:
         abort(400)
 
@@ -73,7 +73,7 @@ def callback():
     # if event is MessageEvent and message is TextMessage, then echo text
     app.logger.info("before event: %s" , len(events))
     app.logger.info("process api")
-    line_bot_api = MessagingApi(api_client)
+    
 
     for event in events:
         app.logger.info("event type: %s" , type(event))
@@ -104,6 +104,7 @@ def callback():
             #     return
             
             # if working_status:
+            line_bot_api = MessagingApi(api_client)
             chatgpt.add_msg(f"Human:{event.message.text}?\n")
             reply_msg = chatgpt.get_response().replace("AI:", "", 1)
             chatgpt.add_msg(f"AI:{reply_msg}\n")
