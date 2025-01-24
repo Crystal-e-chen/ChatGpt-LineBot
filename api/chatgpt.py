@@ -22,7 +22,7 @@ class ChatGPT:
             #     {"role": "system", "content": "You are a helpful assistant."},
             #     {"role": "user", "content": self.prompt.generate_prompt()}
             # ],
-            messages=self.prompt.generate_prompt(),
+            messages=self.prompt.get_messages,
             temperature=self.temperature,
             frequency_penalty=self.frequency_penalty,
             presence_penalty=self.presence_penalty,
