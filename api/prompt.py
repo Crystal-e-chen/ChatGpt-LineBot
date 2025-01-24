@@ -23,3 +23,6 @@ class Prompt:
 
     def generate_prompt(self):
         return '\n'.join(self.msg_list)
+    
+    def get_messages(self):
+        return self.msg_list
